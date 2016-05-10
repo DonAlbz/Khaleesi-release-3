@@ -24,9 +24,11 @@ public class Visualizzatore {
 	private static final String BENVENUTO = "Benvenuto in The Shandon Adventure!";
 	public static final String ORCO = "Hai trovato un Orco\n";
 	private static final String COMBATTI_ORCO = "Vuoi combattere? ";
-	public static final String PUNTI_VITA = "Punti vita: %d \n";
-	
-
+	private static final String REPORT_COMBATTIMENTO = "Nel combattimento %s ha subito %d danni.\n";
+	private static final String PUNTI_VITA = "Ora il tuo guerriero ha %d punti vita.\n";
+	private static final String MORTO = "Sfortunatamente il tuo guerriero e' morto.";
+	private static final String FUGA_RIUSCITA = "La fuga e' riuscita con successo";
+	private static final String FUGA_NON_RIUSCITA = "La fuga non e' riuscita";
 	
 	public static boolean scegliRaccoltaArma(String nomeOggetto){
 		System.out.printf(OGGETTO_TROVATO, nomeOggetto);
@@ -57,21 +59,37 @@ public class Visualizzatore {
 		System.out.printf(GUERRIERO_CURATO, nome, totaleCura, puntiVita);		
 	}
 
-	public static void printBenvenuto() {
-		System.out.println(BENVENUTO );		
-	}
-	
-	
-
-	public static void printArrivederci() {
-		System.out.println(ARRIVEDERCI);
-		
-	}
-
 	public static Boolean scegliCombattiOrco() {
 		System.out.printf(ORCO);
 		return InputDati.yesOrNo(COMBATTI_ORCO);				
 	}
 	
-
+	public static void reportCombattimento(String nomeGuerriero, int danniSubiti){
+		System.out.printf(REPORT_COMBATTIMENTO, nomeGuerriero, danniSubiti);
 	}
+	
+	public static void reportPuntiVita(int puntiVita) {
+		System.out.printf(PUNTI_VITA, puntiVita);
+	}
+	
+	public static void morto() {
+		System.out.println(MORTO);			
+	}
+	
+	public static void printBenvenuto() {
+		System.out.println(BENVENUTO );		
+	}
+	
+	public static void printArrivederci() {
+		System.out.println(ARRIVEDERCI);
+		
+	}
+
+	public static void fugaRiuscita(boolean b) {
+		if (b)
+			System.out.println(FUGA_RIUSCITA);
+		else
+			System.out.println(FUGA_NON_RIUSCITA);
+	}
+
+}

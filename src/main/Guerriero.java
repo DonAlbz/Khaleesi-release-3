@@ -63,7 +63,28 @@ public class Guerriero {
 	public void subisciDanni(int danni){
 		puntiVita-=danni;
 	}
-		
+	
+	/**Applica i danni subiti in combattimento alla vita del guerriero
+	 * 
+	 */
+	public void combatti(){
+		subisciDanni(danniSubiti());
+	}
+	
+	/**
+	 * @return i danni che subirebbe in combattimento
+	 */
+	public int danniSubiti(){
+		if (arma!=null){
+			return arma.getDanno();
+		}
+		else
+			return Parametri.DANNO_MANI_NUDE;
+	}
+	
+	/**Cura il guerriero
+	 * @param cura
+	 */
 	public void riceviCura(int cura){
 		puntiVita+=cura;
 	}
@@ -86,6 +107,11 @@ public class Guerriero {
 		return nome;
 	}
 	
+	public Boolean isVivo(){
+		return puntiVita>0;
+	}
 	
-	
+	public void aumentaExp(int exp){
+		puntiEsperienza+=exp;
+	}
 }

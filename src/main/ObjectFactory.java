@@ -61,7 +61,7 @@ public class ObjectFactory {
 	}
 	
 	private static AbstractObject creaOrco() {
-		return new Orco (Visualizzatore.ORCO);
+		return new Orco (Visualizzatore.ORCO, Parametri.PUNTI_EXP_ORCO);
 	}
 
 	

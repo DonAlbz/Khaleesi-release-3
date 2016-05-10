@@ -1,5 +1,7 @@
 package main;
 
+import utility.EstrazioniCasuali;
+
 public abstract class AbstractStato implements Stato {
 	Partita partita;
 	Guerriero guerriero;
@@ -36,23 +38,25 @@ public abstract class AbstractStato implements Stato {
 	 */
 	
 	private void combattiOrco(Orco orco) {
-		
-		if (guerriero.getArma()!=null) {
-			/*Arma armaCorrente=guerriero.getArma();
-			if (armaCorrente==) {
-				
-			}*/
-			
+		guerriero.combatti();
+		Visualizzatore.reportCombattimento(guerriero.getNome(), guerriero.danniSubiti());
+		if(guerriero.isVivo()){
+			guerriero.aumentaExp(orco.getExp());
+			Visualizzatore.reportPuntiVita(guerriero.getPuntiVita());
+			partita.modificaCasella(guerriero.getPosizione(), null);
 		}
-		else if (guerriero.getArma()==null) {
-			int puntiVita=guerriero.getPuntiVita()-40;
-			System.out.printf(Visualizzatore.PUNTI_VITA, puntiVita);
-			guerriero.setPuntiVita(puntiVita);
-			
-		}
+		else
+			partita.setStato(new Morto(partita));			
 	}
 	
 	private void fugaOrco (Orco orco) {
+		double casuale=EstrazioniCasuali.estraiDouble(0, 1);
+		if(casuale<Parametri.PROB_FUGA)
+			Visualizzatore.fugaRiuscita(true);
+		else{
+			Visualizzatore.fugaRiuscita(false);
+			combattiOrco(orco);
+		}
 		
 	}
 	
