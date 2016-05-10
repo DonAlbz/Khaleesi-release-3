@@ -100,6 +100,8 @@ public abstract class AbstractStato implements Stato {
 			guerriero.subisciDanni(veleno);
 			forziere.setVeleno(0);
 			System.out.printf(Visualizzatore.FORZIERE_TROVATO_VELENO,veleno);
+			if(!guerriero.isVivo())
+				partita.setStato(new Morto(partita));
 		}
 	}
 
